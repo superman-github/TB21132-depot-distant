@@ -7,13 +7,7 @@
 /*****  le formulaire a été soumis  *****/
 /****************************************/
 
-if (isset($_POST['envoi'])){
-
-        // récupération du nom de la station
-        $nom_station=$_POST['nom_station'];
-
-        // récupération de l'altitude de la station
-        $altitude_station=$_POST['altitude_station'];
+if (isset($_POST['envoi'])){        
 
         //booléen pour la vérification du formulaire
         $verif_form=true;   
@@ -82,8 +76,8 @@ if (isset($_POST['envoi'])){
 
             $requete = $db->prepare("INSERT INTO station (sta_nom,sta_altitude) VALUES (:sta_nom,:sta_altitude)");
 
-            $requete->bindValue(':sta_nom', $nom_station, PDO::PARAM_STR);
-            $requete->bindValue(':sta_altitude', $altitude_station, PDO::PARAM_INT);
+            $requete->bindValue(':sta_nom', $_POST['nom_station'], PDO::PARAM_STR);
+            $requete->bindValue(':sta_altitude', $_POST['altitude_station'], PDO::PARAM_INT);
 
             //exécution de la requête
             $requete->execute();
